@@ -1,0 +1,60 @@
+{
+  "name": "mainstack-test",
+  "version": "1.0.0",
+  "description": "Backend engineering test for Internship role @ Mainstack",
+  "main": "server.ts",
+  "scripts": {
+    "start": "node ./dist/server",
+    "dev": "nodemon --watch '**/*.ts' --exec ts-node ./src/server.ts",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olayanju-1234/Mainstack-Test.git"
+  },
+  "keywords": [
+    "Mainstack",
+    "mainstack"
+  ],
+  "author": "Joseph Olayanju",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Olayanju-1234/Mainstack-Test/issues"
+  },
+  "homepage": "https://github.com/Olayanju-1234/Mainstack-Test#readme",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^20.11.21",
+    "module-alias": "^2.2.3",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "joi": "^17.12.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.0",
+    "morgan": "^1.10.0"
+  },
+  "_moduleAliases": {
+    "@": "dist",
+    "@config": "dist/config",
+    "@interfaces": "dist/interfaces",
+    "@models": "dist/models",
+    "@services": "dist/services",
+    "@routes": "dist/routes",
+    "@controllers": "dist/controllers",
+    "@middlewares": "dist/middlewares",
+    "@utils": "dist/utils",
+    "@validators": "dist/validators",
+    "@types": "dist/types"
+  }
+}
