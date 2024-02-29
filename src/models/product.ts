@@ -5,6 +5,7 @@ const ProductSchemaFields: Record<keyof IProduct, any> = {
     name: {
         type: String,
         required: true,
+        index: true,
     },
     description: {
         type: String,
@@ -14,16 +15,26 @@ const ProductSchemaFields: Record<keyof IProduct, any> = {
         type: Number,
         required: true,
     },
-    stock: {
+    sku: {
         type: Number,
         required: true,
     },
-    image: {
+    product_image: [{
         type: String,
+    }],
+    category: {
+        type: String,
+        required: true,
+    },
+    uploaded_by: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
         required: true,
     },
 };
 
-const ProductSchema = new Schema<IProductDocument>(ProductSchemaFields);
+const ProductSchema = new Schema<IProductDocument>(ProductSchemaFields, {
+    timestamps : true,
+});
 
 export const ProductModel = model<IProductDocument>("Product", ProductSchema);
