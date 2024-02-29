@@ -9,6 +9,7 @@ const UserSchemaFields: Record<keyof IUser, any> = {
     password: {
         type: String,
         required: true,
+        select: false,
     },
 };
 
