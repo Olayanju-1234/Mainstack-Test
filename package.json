@@ -57,6 +57,7 @@
     "@controllers": "dist/controllers",
     "@middlewares": "dist/middlewares",
     "@utils": "dist/utils",
+    "@errors": "dist/errors",
     "@validators": "dist/validators",
     "@types": "dist/types"
   }

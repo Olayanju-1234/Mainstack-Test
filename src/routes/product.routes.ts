@@ -3,6 +3,8 @@ import {
     createProduct,
     getProductById,
     listAllProducts,
+    updateProduct,
+    deleteProduct
 } from '@controllers/product';
 import auth from '@middlewares/auth';
 
@@ -11,5 +13,7 @@ const router = Router();
 router.post('/', auth, createProduct);
 router.get('/:id', auth, getProductById);
 router.get('/', auth, listAllProducts);
+router.patch('/:id', auth, updateProduct);
+router.delete('/:id', auth, deleteProduct);
 
 export default router;

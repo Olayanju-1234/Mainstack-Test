@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import config from "@config/envs";
 import router from "@routes/index";
+import { errorHandler } from "@middlewares/error";
 
 const { NODE_ENV } = config;
 
@@ -50,5 +51,8 @@ app.use("*", (req: Request, res: Response) => {
     message: "API endpoint doesn't exist",
   });
 });
+
+// ** Error Handler **
+app.use(errorHandler);
 
 export default app;
