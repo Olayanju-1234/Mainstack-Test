@@ -60,6 +60,9 @@ export const getProductById = async (req: Request, res: Response) => {
             'Product fetched successfully'
         );
     } catch (error: any) {
+        if (error.message === "Product not found") {
+            return ErrorResponse(res, error.message, 400, error);
+        }
         return ErrorResponse(res, error.message, 500);
     }
 };
@@ -122,6 +125,9 @@ export const updateProduct = async (req: Request, res: Response) => {
                 200
             );
         } catch (error: any) {
+            if (error.name === "BadRequestError") {
+                return ErrorResponse(res, error.message, 400, error);
+            }
             return ErrorResponse(res, error.message, 500);
         }
     });

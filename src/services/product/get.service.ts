@@ -1,3 +1,4 @@
+import { NotFoundError } from "@errors/custom";
 import { IProductDocument } from "@interfaces/product";
 import { ProductModel } from "@models/product";
 import { ListProductsAggregator } from "@services/query/aggregates";
@@ -7,6 +8,10 @@ export const GetProductById = async (id: string): Promise<IProductDocument | nul
     const product = await ProductModel
         .findById(id)
         .populate('uploaded_by', 'email')
+
+    if (!product) {
+        throw new NotFoundError('Product not found');
+    }
 
     return product;
 }
