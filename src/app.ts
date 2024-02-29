@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
 import config from "@config/envs";
+import router from "@routes/index";
 
 const { NODE_ENV } = config;
 
@@ -39,6 +40,8 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.get("/", (req: Request, res: Response) => {
   return res.status(200).send("Api is running");
 });
+
+router(app);
 
 // ** Undefined Routes **
 app.use("*", (req: Request, res: Response) => {
