@@ -7,9 +7,12 @@ export const SignUp = async (req: Request, res: Response) => {
     try {
         const data = req.body;
         const response = await AuthSignUp(data);
-        return SuccessResponse(res, response, 'User created successfully');
+        return SuccessResponse(res, 200, 'User created successfully', response);
     } catch (error: any) {
-        return ErrorResponse(res, error.message, 500, error);
+        if (error.message === 'User already exists') {
+            return ErrorResponse(res, 400, error.message, 'User already exists');
+        }
+        return ErrorResponse(res, 500, error.message, 'Internal server error');
     }
 };
 
@@ -17,8 +20,11 @@ export const SignIn = async (req: Request, res: Response) => {
     try {
         const data = req.body;
         const response = await AuthSignIn(data);
-        return SuccessResponse(res, response, 'User signed in successfully');
+        return SuccessResponse(res, 200, 'User signed in successfully', response);
     } catch (error: any) {
-        return ErrorResponse(res, error.message, 500, error);
+        if (error.message === 'User not found') {
+            return ErrorResponse(res, 404, error.message, 'User not found');
+        }
+        return ErrorResponse(res, 500, error.message, 'Internal server error');
     }
 };

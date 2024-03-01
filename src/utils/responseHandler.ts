@@ -1,15 +1,16 @@
 import {
     ISuccessResponse,
     IErrorResponse,
-    IResponseData,
+    ISuccessResponseData,
+    IErrorResponseData
 } from '@interfaces/responses';
 import { Response } from 'express';
 
 export const SuccessResponse = (
     res: Response,
-    data: IResponseData,
+    status: number = 200,
     message: string,
-    status: number = 200
+    data: ISuccessResponseData
 ): Response => {
     const response: ISuccessResponse = {
         success: true,
@@ -21,9 +22,9 @@ export const SuccessResponse = (
 
 export const ErrorResponse = (
     res: Response,
-    message: string,
     status: number = 500,
-    error?: IResponseData
+    message: string,
+    error?: any
 ): Response => {
     const response: IErrorResponse = {
         success: false,

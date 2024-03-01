@@ -14,11 +14,11 @@ const { JWT_SECRET } = config;
 const auth = async (req: Request, res: Response, next: NextFunction) => {
     const token = extractToken(req);
     if (!token) {
-        return ErrorResponse(res, 'No token provided', 401);
+        return ErrorResponse(res, 401, 'No token provided');
     }
     verify(token, JWT_SECRET, (err, decoded) => {
         if (err) {
-            return ErrorResponse(res, 'Failed to authenticate token', 401);
+            return ErrorResponse(res, 401, 'Failed to authenticate token');
         }
         req.user = decoded as IUserAuthRequest;
         return next();

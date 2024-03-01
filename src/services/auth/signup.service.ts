@@ -5,7 +5,7 @@ import { HashPassword } from '@utils/hashing';
 
 export const AuthSignUp = async (
     data: IAuthPayload
-): Promise<IAuthResponse | IAuthError> => {
+) => {
     const user = await UserModel.findOne({ email: data.email });
     if (user) {
         throw new Error('User already exists');
@@ -15,7 +15,7 @@ export const AuthSignUp = async (
 
     const newUser = await UserModel.create(data);
 
-    const responseData: IUserDocument = newUser.toJSON();
+    const { password , ...responseData } = newUser.toJSON();
 
-    return { user: responseData };
+    return responseData;
 };

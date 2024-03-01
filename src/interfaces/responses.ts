@@ -1,16 +1,19 @@
-export interface IResponseData {
-    [key: string]: any;
-  }
-  
-  export interface IErrorResponse extends IResponseData {
-    message: string;
-    success: boolean;
-    error?: IResponseData;
-  }
-  
-  export interface ISuccessResponse extends IResponseData {
-    success: boolean;
-    message: string;
-    data: IResponseData;
-  }
-  
+export interface IErrorResponse {
+  message: string;
+  success: boolean;
+  error?: IErrorResponseData;
+}
+
+export interface IErrorResponseData {
+  [key: string]: any;
+}
+
+export interface ISuccessResponse {
+  success: boolean;
+  message: string;
+  data: ISuccessResponseData;
+}
+
+export interface ISuccessResponseData {
+  [key: string]: any;
+}

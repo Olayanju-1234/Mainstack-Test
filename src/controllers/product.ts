@@ -12,7 +12,7 @@ export const createProduct = async (req: Request, res: Response) => {
     const form = formidable({});
     form.parse(req, async (err, fields, files) => {
         if (err) {
-            return ErrorResponse(res, err, 500);
+            return ErrorResponse(res, 500, err);
         }
 
         const { name, description, price, sku, category } = fields;
@@ -20,8 +20,9 @@ export const createProduct = async (req: Request, res: Response) => {
         if (!name || !description || !price || !sku || !category) {
             return ErrorResponse(
                 res,
-                'name, description, price, sku, category are required',
-                400
+                400,
+                'All fields are required',
+                'Bad Request Error'
             );
         }
 
@@ -40,12 +41,12 @@ export const createProduct = async (req: Request, res: Response) => {
             });
             return SuccessResponse(
                 res,
-                product,
+                201,
                 'Product created successfully',
-                201
+                product as IProductDocument
             );
         } catch (error: any) {
-            return ErrorResponse(res, error.message, 500);
+            return ErrorResponse(res, 500, error.message, 'Internal Server Error');
         }
     });
 };
@@ -56,14 +57,15 @@ export const getProductById = async (req: Request, res: Response) => {
         const product = await GetProductById(id);
         return SuccessResponse(
             res,
-            product as IProductDocument,
-            'Product fetched successfully'
+            200,
+            'Product fetched successfully',
+            product as IProductDocument
         );
     } catch (error: any) {
-        if (error.message === "Product not found") {
-            return ErrorResponse(res, error.message, 400, error);
+        if (error.name === 'NotFoundError') {
+            return ErrorResponse(res, 404, error.message, 'Product not found');
         }
-        return ErrorResponse(res, error.message, 500);
+        return ErrorResponse(res, 500, error.message, 'Internal server error');
     }
 };
 
@@ -95,9 +97,9 @@ export const listAllProducts = async (req: Request, res: Response) => {
             sort_by as string,
             filteredObject
         );
-        return SuccessResponse(res, products, 'Products fetched successfully');
+        return SuccessResponse(res, 200, 'Products fetched successfully', products);
     } catch (error: any) {
-        return ErrorResponse(res, error.message, 500);
+        return ErrorResponse(res, 500, error.message, 'Internal server error');
     }
 };
 
@@ -106,7 +108,7 @@ export const updateProduct = async (req: Request, res: Response) => {
     const form = formidable({});
     form.parse(req, async (err, fields, files) => {
         if (err) {
-            return ErrorResponse(res, err, 500);
+            return ErrorResponse(res, 500, err);
         }
 
         try {
@@ -120,15 +122,25 @@ export const updateProduct = async (req: Request, res: Response) => {
             const product = await UpdateProduct(id, newFields as IProduct);
             return SuccessResponse(
                 res,
-                product,
+                200,
                 'Product updated successfully',
-                200
+                product
             );
         } catch (error: any) {
-            if (error.name === "BadRequestError") {
-                return ErrorResponse(res, error.message, 400, error);
+            if (error.name === 'BadRequestError') {
+                return ErrorResponse(
+                    res,
+                    400,
+                    error.message,
+                    'Bad Request Error'
+                );
             }
-            return ErrorResponse(res, error.message, 500);
+            return ErrorResponse(
+                res,
+                500,
+                error.message,
+                'Internal Server Error'
+            );
         }
     });
 };
@@ -139,12 +151,11 @@ export const deleteProduct = async (req: Request, res: Response) => {
         const product = await DeleteProduct(id);
         return SuccessResponse(
             res,
-            product,
+            200,
             'Product deleted successfully',
-            200
+            product
         );
     } catch (error: any) {
-        return ErrorResponse(res, error.message, 500);
+        return ErrorResponse(res, 500, error.message, 'Internal Server Error');
     }
 };
-
