@@ -10,7 +10,7 @@ const { NODE_ENV } = config;
 const app = express();
 
 // ** CORS ** for all origins
-let whitelist: string[] = ['*']; 
+let whitelist: string[] = ['http://localhost:3000']; 
 
 export const whitelistUrls = whitelist;
 
