@@ -10,15 +10,16 @@ const {
     MONGODB_TEST_NAME,
     MONGODB_PRODUCTION_NAME,
     NODE_ENV,
+    DATABASE_USERNAME,
+    DATABASE_PASSWORD,
 } = config;
 
 let database_name: string = '';
 // Optional configuration options for enhanced security and control
 const options: ConnectOptions = {
     dbName: database_name,
-    user: 'mainstack',
-    pass: 'mainstack',
-    // Add any additional options like auth or replica set configuration here
+    user: DATABASE_USERNAME,
+    pass: DATABASE_PASSWORD,
 };
 
 export async function connectDB(): Promise<void> {
@@ -38,8 +39,10 @@ export async function connectDB(): Promise<void> {
             break;
     }
 
+    // Connect to the database
     connect(MONGO_URI, options);
 
+    // Event listeners
     connection.on('connected', () => {
         console.log(`Connected to ${database_name} database`);
     });
@@ -49,6 +52,7 @@ export async function connectDB(): Promise<void> {
     });
 }
 
+// Close the database connection
 export async function closeDB(): Promise<void> {
     await connection.close();
     console.log('Database connection closed');

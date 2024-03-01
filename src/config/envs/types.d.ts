@@ -10,4 +10,6 @@ export type types = {
     CLOUDINARY_CLOUD_NAME: string;
     CLOUDINARY_API_KEY: string;
     CLOUDINARY_SECRET_KEY: string;
+    DATABASE_USERNAME: string;
+    DATABASE_PASSWORD: string;
 };

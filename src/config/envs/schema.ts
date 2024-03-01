@@ -14,6 +14,8 @@ const schema = {
     CLOUDINARY_CLOUD_NAME: Joi.string().required(),
     CLOUDINARY_API_KEY: Joi.string().required(),
     CLOUDINARY_SECRET_KEY: Joi.string().required(),
+    DATABASE_USERNAME: Joi.string().required(),
+    DATABASE_PASSWORD: Joi.string().required(),
 };
 
 export default schema;
