@@ -4,6 +4,7 @@ import { resolve } from 'path'; // Import the resolve function from Node.js path
 const config: Config.InitialOptions = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  rootDir: resolve(__dirname, './src'), // Use resolve to get the absolute path to the root directory
   moduleNameMapper: {
     '^@models/(.*)$': `${resolve(__dirname, './src/models')}/$1`, // Use resolve to get the absolute path to src/models
     '^@utils/(.*)$': `${resolve(__dirname, 'src/utils')}/$1`, // Use resolve to get the absolute path to src/utils
