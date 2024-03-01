@@ -10,7 +10,7 @@ export const SignUp = async (req: Request, res: Response) => {
         return SuccessResponse(res, 200, 'User created successfully', response);
     } catch (error: any) {
         if (error.message === 'User already exists') {
-            return ErrorResponse(res, 400, error.message, 'User already exists');
+            return ErrorResponse(res, 409, error.message, 'Conflict Error');
         }
         return ErrorResponse(res, 500, error.message, 'Internal server error');
     }
@@ -23,7 +23,7 @@ export const SignIn = async (req: Request, res: Response) => {
         return SuccessResponse(res, 200, 'User signed in successfully', response);
     } catch (error: any) {
         if (error.message === 'User not found') {
-            return ErrorResponse(res, 404, error.message, 'User not found');
+            return ErrorResponse(res, 404, error.message, 'Not Found Error');
         }
         return ErrorResponse(res, 500, error.message, 'Internal server error');
     }

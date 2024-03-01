@@ -17,3 +17,15 @@ export class NotFoundError extends CustomError {
         super(message, 404);
     }
 }
+
+export class UnauthorizedError extends CustomError {
+    constructor(message: string) {
+        super(message, 401);
+    }
+}
+
+export class ConflictError extends CustomError {
+    constructor(message: string) {
+        super(message, 409);
+    }
+}

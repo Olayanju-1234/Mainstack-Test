@@ -4,11 +4,11 @@ export const ListProductsAggregator = [
             from: 'users',
             localField: 'uploaded_by',
             foreignField: '_id',
-            as: 'uploaded_by'
-        }
+            as: 'uploaded_by',
+        },
     },
     {
-        $unwind: '$uploaded_by'
+        $unwind: '$uploaded_by',
     },
     {
         $project: {
@@ -19,9 +19,8 @@ export const ListProductsAggregator = [
             product_image: 1,
             category: 1,
             uploaded_by: {
-                email: 1
-            }
-        }
-    }
-    
+                email: 1,
+            },
+        },
+    },
 ];

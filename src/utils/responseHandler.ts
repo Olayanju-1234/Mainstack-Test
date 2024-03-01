@@ -2,7 +2,7 @@ import {
     ISuccessResponse,
     IErrorResponse,
     ISuccessResponseData,
-    IErrorResponseData
+    IErrorResponseData,
 } from '@interfaces/responses';
 import { Response } from 'express';
 
