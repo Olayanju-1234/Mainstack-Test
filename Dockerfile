@@ -1,9 +1,9 @@
 FROM node:18-alpine
 
 # Create app directory
-WORKDIR /src
+WORKDIR /src/app
 
-COPY package*.json ./
+COPY package.json .
 
 RUN npm install
 
