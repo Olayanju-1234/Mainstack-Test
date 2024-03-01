@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
+import { AuthSignIn } from '@services/auth/signin.service';
 import { SignIn } from '@controllers/auth';
-
 // Mock UserModel
 jest.mock('@models/user', () => ({
     UserModel: {
@@ -64,12 +64,12 @@ describe('SignIn Controller', () => {
 
     it('should handle sign in when user not found', async () => {
         // Mock UserModel.findOne to return null (user not found)
-        (
-            require('@models/user').UserModel.findOne as jest.Mock
-        ).mockResolvedValueOnce(null);
-
+        (AuthSignIn as jest.Mock).mockRejectedValue(
+            new Error('User not found')
+        );
+    
         await SignIn(req as Request, res as Response);
-
+    
         expect(res.status).toHaveBeenCalledWith(404);
         expect(res.json).toHaveBeenCalledWith({
             success: false,

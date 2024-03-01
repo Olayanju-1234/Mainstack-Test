@@ -37,7 +37,7 @@ describe('deleteProduct', () => {
 
         await deleteProduct(req as Request, res as Response);
 
-        expect(res.status).toHaveBeenCalledWith(500);
+        expect(res.status).toHaveBeenCalledWith(404);
         expect(res.json).toHaveBeenCalledWith({
             success: false,
             message: 'Product not found',
