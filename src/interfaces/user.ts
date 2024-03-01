@@ -4,5 +4,5 @@ export interface IUser {
 }
 
 export interface IUserDocument extends IUser, Document {
-    // Add methods here
+    // Add methods here (later later)
 }

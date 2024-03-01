@@ -3,4 +3,4 @@ export interface IPaginate<T> {
     currentPage: number;
     totalPages: number;
     totalResults: number;
-  }
+}
