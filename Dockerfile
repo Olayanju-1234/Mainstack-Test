@@ -1,7 +1,7 @@
 FROM node:18-alpine
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /
 
 COPY package*.json ./
 
