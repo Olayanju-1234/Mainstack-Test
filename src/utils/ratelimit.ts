@@ -7,4 +7,5 @@ export const limiter = rateLimit({
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
     message: 'Too many requests from this IP, please try again after an hour',
     // store: ... , // Redis, Memcached, etc. See below.
+    validate: {xForwardedForHeader: false}, // Disable `X-Forwarded-For` header validation.
 });
