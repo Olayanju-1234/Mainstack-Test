@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import config from '@config/envs';
 import router from '@routes/index';
 import { errorHandler } from '@middlewares/error';
+import { limiter } from '@utils/ratelimit';
 
 const { NODE_ENV } = config;
 
@@ -34,6 +35,9 @@ app.use(cors(corsOptions));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// ** RATE LIMIT **
+app.use(limiter);
 
 // ** ROUTES **
 app.get('/', (req: Request, res: Response) => {
