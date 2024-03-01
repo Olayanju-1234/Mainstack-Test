@@ -53,7 +53,7 @@ describe('getProductById Controller', () => {
         expect(res.json).toHaveBeenCalledWith({
             success: false,
             message: 'Product not found',
-            error: 'Internal server error',
+            error: 'Not Found Error',
         });
     });
 });
