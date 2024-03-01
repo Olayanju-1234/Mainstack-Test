@@ -11,10 +11,12 @@ export const AuthSignUp = async (
         throw new Error('User already exists');
     }
 
+    // hash password
     data.password = HashPassword(data.password);
 
     const newUser = await UserModel.create(data);
 
+    // response data
     const { password , ...responseData } = newUser.toJSON();
 
     return responseData;

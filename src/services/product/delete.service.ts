@@ -1,4 +1,4 @@
-import { ProductModel } from "@models/product";
+import { ProductModel } from '@models/product';
 
 export const DeleteProduct = async (id: string) => {
     const product = await ProductModel.findById(id);
@@ -7,7 +7,8 @@ export const DeleteProduct = async (id: string) => {
         throw new Error('Product not found');
     }
 
+    // delete product
     await product.deleteOne();
 
     return product;
-}
+};

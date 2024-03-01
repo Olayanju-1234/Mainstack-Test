@@ -13,6 +13,7 @@ export const UpdateProduct = async (id: string, data: IProduct) => {
         data.product_image = product.product_image;
     }
 
+    // Update product
     Object.assign(product, data);
 
     await product.save();

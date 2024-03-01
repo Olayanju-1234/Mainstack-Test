@@ -12,9 +12,11 @@ const AddProductService = async (data: IProduct): Promise<IProductDocument> => {
             )
         );
 
+        // map the media url to the product_image field
         data.product_image = media.map((file) => file.url);
     }
 
+    // create product
     const product = await ProductModel.create(data);
 
     return product;
