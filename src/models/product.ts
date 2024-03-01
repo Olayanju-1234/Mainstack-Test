@@ -1,5 +1,5 @@
-import { IProduct, IProductDocument } from "@interfaces/product";
-import { model, Schema } from "mongoose";
+import { IProduct, IProductDocument } from '@interfaces/product';
+import { model, Schema } from 'mongoose';
 
 const ProductSchemaFields: Record<keyof IProduct, any> = {
     name: {
@@ -19,22 +19,24 @@ const ProductSchemaFields: Record<keyof IProduct, any> = {
         type: Number,
         required: true,
     },
-    product_image: [{
-        type: String,
-    }],
+    product_image: [
+        {
+            type: String,
+        },
+    ],
     category: {
         type: String,
         required: true,
     },
     uploaded_by: {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: 'User',
         required: true,
     },
 };
 
 const ProductSchema = new Schema<IProductDocument>(ProductSchemaFields, {
-    timestamps : true,
+    timestamps: true,
 });
 
-export const ProductModel = model<IProductDocument>("Product", ProductSchema);
+export const ProductModel = model<IProductDocument>('Product', ProductSchema);

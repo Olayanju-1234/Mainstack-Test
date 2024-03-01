@@ -12,7 +12,7 @@ export const createProduct = async (req: Request, res: Response) => {
     const form = formidable({});
     form.parse(req, async (err, fields, files) => {
         if (err) {
-            return ErrorResponse(res, 500, err);
+            return ErrorResponse(res, 500, err.message, 'Error Parsing Form');
         }
 
         const { name, description, price, sku, category } = fields;
@@ -46,7 +46,12 @@ export const createProduct = async (req: Request, res: Response) => {
                 product as IProductDocument
             );
         } catch (error: any) {
-            return ErrorResponse(res, 500, error.message, 'Internal Server Error');
+            return ErrorResponse(
+                res,
+                500,
+                error.message,
+                'Internal Server Error'
+            );
         }
     });
 };
@@ -62,10 +67,10 @@ export const getProductById = async (req: Request, res: Response) => {
             product as IProductDocument
         );
     } catch (error: any) {
-        if (error.name === 'NotFoundError') {
-            return ErrorResponse(res, 404, error.message, 'Product not found');
+        if (error.message === 'Product not found') {
+            return ErrorResponse(res, 404, error.message, 'Not Found Error');
         }
-        return ErrorResponse(res, 500, error.message, 'Internal server error');
+        return ErrorResponse(res, 500, error.message, 'Internal Server Error');
     }
 };
 
@@ -97,7 +102,12 @@ export const listAllProducts = async (req: Request, res: Response) => {
             sort_by as string,
             filteredObject
         );
-        return SuccessResponse(res, 200, 'Products fetched successfully', products);
+        return SuccessResponse(
+            res,
+            200,
+            'Products fetched successfully',
+            products
+        );
     } catch (error: any) {
         return ErrorResponse(res, 500, error.message, 'Internal server error');
     }
@@ -108,7 +118,7 @@ export const updateProduct = async (req: Request, res: Response) => {
     const form = formidable({});
     form.parse(req, async (err, fields, files) => {
         if (err) {
-            return ErrorResponse(res, 500, err);
+            return ErrorResponse(res, 500, err.message, 'Error Parsing Form');
         }
 
         try {
@@ -127,12 +137,12 @@ export const updateProduct = async (req: Request, res: Response) => {
                 product
             );
         } catch (error: any) {
-            if (error.name === 'BadRequestError') {
+            if (error.message === 'Product not found') {
                 return ErrorResponse(
                     res,
-                    400,
+                    404,
                     error.message,
-                    'Bad Request Error'
+                    'Not Found Error'
                 );
             }
             return ErrorResponse(
@@ -156,6 +166,9 @@ export const deleteProduct = async (req: Request, res: Response) => {
             product
         );
     } catch (error: any) {
+        if (error.message === 'Product not found') {
+            return ErrorResponse(res, 404, error.message, 'Not Found Error');
+        }
         return ErrorResponse(res, 500, error.message, 'Internal Server Error');
     }
 };
