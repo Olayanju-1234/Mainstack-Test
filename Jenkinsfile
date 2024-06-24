@@ -11,7 +11,7 @@ pipeline {
 
                 stage('Testing Jenkins') {
             when {
-                branch 'testing-jenkins'
+                branch 'testing-jenkins-*'
             }
             steps {
                 echo 'Showing just jenkins change...'
