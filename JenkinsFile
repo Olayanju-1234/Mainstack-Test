@@ -22,7 +22,6 @@ pipeline {
                 // Example deploy step
                 sh 'echo "Deploying the project..."'
                 // final stage
-                
                 // Add your actual deploy commands here, e.g., deploying to a server or pushing a Docker image
             }
         }
