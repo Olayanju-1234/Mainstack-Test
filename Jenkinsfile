@@ -13,7 +13,7 @@ pipeline {
                 echo 'Testing...'
             }
         }
-        stage('Test Branch Main') {
+        stage('Test Branch Test') {
             steps {
                 // Your test steps here
                 echo 'Testing Main again'
