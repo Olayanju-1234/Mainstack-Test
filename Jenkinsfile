@@ -25,10 +25,10 @@ pipeline {
                 echo 'Deploying...'
             }
         }
-        stage('Deploy Test') {
+        stage('Deploy Latest changes') {
             steps {
                 // Your deployment steps here
-                echo 'Deploying...'
+                echo 'Deploying latest...'
             }
         }
     }
