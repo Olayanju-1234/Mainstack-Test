@@ -19,10 +19,10 @@ pipeline {
                 echo 'Testing Main again'
             }
         }
-        stage('Deploy') {
+        stage('Lets see staging') {
             steps {
                 // Your deployment steps here
-                echo 'Deploying...'
+                echo 'Staging... '
             }
         }
         stage('Deploy Latest changes') {

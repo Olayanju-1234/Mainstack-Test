@@ -13,6 +13,7 @@ async function Paginate<T extends Record<string, any>>(
                 totalData: [...aggregate, { $skip: page * limit }],
                 totalCount: [...aggregate, { $count: 'count' }],
             },
+            
         },
     ];
 
