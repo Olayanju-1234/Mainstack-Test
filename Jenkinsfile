@@ -13,12 +13,6 @@ pipeline {
                 echo 'Testing...'
             }
         }
-        stage('Test Branch Test') {
-            steps {
-                // Your test steps here
-                echo 'Testing Main again'
-            }
-        }
         stage('Lets see staging') {
             steps {
                 // Your deployment steps here
