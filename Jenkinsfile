@@ -7,12 +7,6 @@ pipeline {
                 echo 'Building...'
             }
         }
-        stage('Test Branch Testing-Jenkins') {
-            steps {
-                // Your test steps here
-                echo 'Testing...'
-            }
-        }
         stage('Deploy') {
             steps {
                 // Your deployment steps here
