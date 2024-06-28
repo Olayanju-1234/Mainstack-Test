@@ -6,9 +6,8 @@ pipeline {
             steps {
                 script {
                     // Trigger the main pipeline job
-                    build job: 'Mainstack-Job', wait: true, parameters: [
-                        string(name: 'BRANCH_NAME', value: "${env.BRANCH_NAME}")
-                    ]
+                    echo "Triggering Pipeline Job"
+                    build job: 'Mainstack-Job', wait: true
                 }
             }
         }
